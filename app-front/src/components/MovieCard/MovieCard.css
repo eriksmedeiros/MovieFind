@@ -1,0 +1,19 @@
+.movieCard {
+    width: 30%;
+    color: #fff;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #111;
+    padding: 1rem;
+}
+
+.movieCard img {
+    max-width: 100%;
+}
+
+.movieCard img,
+.movieCard h2 {
+    margin-bottom: 12px;
+}

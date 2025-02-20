@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import MovieCard from '../../components/MovieCard/MovieCard'
 
 import './Home.css'
 
@@ -25,17 +26,14 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className="home">
       <h1>Filmes</h1>
       {movies.length === 0 ? <p>Carregando</p> : (movies.map((movie) => (
-          <div className="movie" key={movie.id}>
-            <h2>{movie.title}</h2>
-            <p>{movie.genre}</p>
-            <p>{movie.director}</p>
-            <p>{movie.synopsis}</p>
-            <p>{movie.releaseDate}</p>
-            <p>{movie.duration}</p>
-          </div>
+          <MovieCard key={movie.id}
+            imageUrl={movie.imageUrl}
+            title={movie.title}
+            genre={movie.genre}
+          />
       ))
       )}
     </div>

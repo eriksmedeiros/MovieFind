@@ -1,4 +1,4 @@
-package com.erik.movie_find.reepositorys;
+package com.erik.movie_find.repositorys;
 
 import java.util.UUID;
 

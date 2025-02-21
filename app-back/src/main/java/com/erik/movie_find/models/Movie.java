@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
 
+import com.erik.movie_find.dtos.MovieDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
@@ -53,5 +54,17 @@ public class Movie {
         this.releaseDate = releaseDate;
         this.duration = duration;
         this.imageUrl = imageUrl;
+    }
+
+    public MovieDTO toDTO() {
+        MovieDTO movieDTO = new MovieDTO();
+        movieDTO.setTitle(this.title);
+        movieDTO.setGenre(this.genre);
+        movieDTO.setDirector(this.director);
+        movieDTO.setSynopsis(this.synopsis);
+        movieDTO.setReleaseDate(this.releaseDate);
+        movieDTO.setDuration(this.duration);
+        movieDTO.setImageUrl(this.imageUrl);
+        return movieDTO;
     }
 }

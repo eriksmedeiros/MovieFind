@@ -1,11 +1,9 @@
 package com.erik.movie_find.models;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.UUID;
 
 import com.erik.movie_find.dtos.MovieDTO;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,40 +29,30 @@ public class Movie {
 
     private String title;
 
-    private String genre;
+    private String overview;
 
-    private String director;
+    private String poster_path;
 
-    private String synopsis;
+    private LocalDate release_date;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate releaseDate;
-    
-    @JsonFormat(pattern = "HH:mm")
-    private LocalTime duration;
+    private Double vote_average;
 
-    private String imageUrl;
-
-    public Movie(String title, String genre, String director, String synopsis, LocalDate releaseDate,
-            LocalTime duration, String imageUrl) {
+    public Movie(String title, String overview, String poster_path, LocalDate release_date, Double vote_average) {
         this.title = title;
-        this.genre = genre;
-        this.director = director;
-        this.synopsis = synopsis;
-        this.releaseDate = releaseDate;
-        this.duration = duration;
-        this.imageUrl = imageUrl;
+        this.overview = overview;
+        this.poster_path = poster_path;
+        this.release_date = release_date;
+        this.vote_average = vote_average;
     }
 
     public MovieDTO toDTO() {
         MovieDTO movieDTO = new MovieDTO();
         movieDTO.setTitle(this.title);
-        movieDTO.setGenre(this.genre);
-        movieDTO.setDirector(this.director);
-        movieDTO.setSynopsis(this.synopsis);
-        movieDTO.setReleaseDate(this.releaseDate);
-        movieDTO.setDuration(this.duration);
-        movieDTO.setImageUrl(this.imageUrl);
+        movieDTO.setOverview(this.overview);
+        movieDTO.setPoster_path(this.poster_path);
+        movieDTO.setRelease_date(this.release_date);
+        movieDTO.setVote_average(this.vote_average);
+
         return movieDTO;
     }
 }

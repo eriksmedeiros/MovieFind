@@ -1,5 +1,7 @@
 package com.erik.movie_find.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,8 +25,8 @@ public class MovieController {
     private MovieService movieService;
 
     @GetMapping
-    public ResponseEntity<?> getMovies(){
-        return ResponseEntity.ok(movieService.getAllMovies());
+    public List<MovieDTO> getMovies(){
+        return movieService.getAllMovies();
     }
 
     @PostMapping("/upload")

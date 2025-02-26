@@ -27,8 +27,26 @@ public class MovieService {
     @Value("${tmdb.api.key}")
     private String API_KEY;
 
-    public List<Movie> getAllMovies() {
-        return movieRepository.findAll();
+    public List<MovieDTO> getAllMovies() {
+        String url = "https://api.themoviedb.org/3/movie/popular?api_key=" + API_KEY + "&language=pt-BR";
+        String bearerToken = "Bearer " + API_TOKEN;
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("accept", "application/json");
+        headers.set("Authorization", bearerToken);
+
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<MovieDTO> response = restTemplate.exchange(
+            url,
+            HttpMethod.GET,
+            entity,
+            MovieDTO.class
+        );
+
+        return response.getBody().getResults();
     }
 
     public MovieDTO uploadMovie(MovieDTO movieDTO) {

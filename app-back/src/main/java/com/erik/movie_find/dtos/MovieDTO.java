@@ -1,10 +1,10 @@
 package com.erik.movie_find.dtos;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.List;
 
 import com.erik.movie_find.models.Movie;
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.*;
 
 @AllArgsConstructor
@@ -13,28 +13,29 @@ import lombok.*;
 @Setter
 public class MovieDTO {
 
-    String title; 
-    String genre; 
-    String director; 
-    String synopsis;
+    private String title; 
+    private String overview;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    LocalDate releaseDate;
+    private String poster_path;
 
-    @JsonFormat(pattern = "HH:mm")
-    LocalTime duration;
+    private LocalDate release_date;
 
-    String imageUrl;
+    private Double vote_average;
+
+    private List<MovieDTO> results;
+
+    public List<MovieDTO> getResults() {
+        return results;
+    }
     
     public Movie toEntity() {
         Movie movie = new Movie();
         movie.setTitle(this.title);
-        movie.setGenre(this.genre);
-        movie.setDirector(this.director);
-        movie.setSynopsis(this.synopsis);
-        movie.setReleaseDate(this.releaseDate);
-        movie.setDuration(this.duration);
-        movie.setImageUrl(this.imageUrl);
+        movie.setOverview(this.overview);
+        movie.setPoster_path(this.poster_path);
+        movie.setRelease_date(this.release_date);
+        movie.setVote_average(this.vote_average);
+        
         return movie;
     }
 }

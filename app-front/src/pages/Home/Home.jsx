@@ -30,9 +30,9 @@ const Home = () => {
       <h1>Filmes</h1>
       {movies.length === 0 ? <p>Carregando</p> : (movies.map((movie) => (
           <MovieCard key={movie.id}
-            imageUrl={movie.imageUrl}
+            poster_path={movie.poster_path}
             title={movie.title}
-            genre={movie.genre}
+            vote_average={movie.vote_average}
           />
       ))
       )}

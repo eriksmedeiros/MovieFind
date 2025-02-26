@@ -1,12 +1,12 @@
 import "./MovieCard.css";
 
 // eslint-disable-next-line react/prop-types
-function MovieCard({imageUrl, title, genre}) {
+function MovieCard({poster_path, title, vote_average}) {
     return (
         <div className="movieCard">
-            <img src={imageUrl} alt={title} />
+            <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
             <h2>{title}</h2>
-            <p>{genre}</p>
+            <p>{vote_average}</p>
         </div>
     );
 }

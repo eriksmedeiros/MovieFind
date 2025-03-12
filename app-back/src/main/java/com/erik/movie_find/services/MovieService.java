@@ -76,4 +76,10 @@ public class MovieService {
 
         return response.getBody();
     }
+
+    public MovieDTO getMovieByTitle(String title) {
+        Movie movie = movieRepository.findByTitle(title);
+
+        return movie.toDTO();
+    }
 }

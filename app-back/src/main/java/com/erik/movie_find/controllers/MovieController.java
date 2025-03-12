@@ -36,7 +36,12 @@ public class MovieController {
         
     @GetMapping("/search")
     public ResponseEntity<?> searchMovie(@RequestParam String title){
-        String newTitle = title.replace(" ", "%");
+        String newTitle = title.replace(" ", "%20");
         return ResponseEntity.ok(movieService.searchMovieByTitle(newTitle));
+    }
+
+    @GetMapping("/{title}")
+    public ResponseEntity<?> getMovieByTitle(@PathVariable String title){
+        return ResponseEntity.ok(movieService.getMovieByTitle(title));
     }
 }

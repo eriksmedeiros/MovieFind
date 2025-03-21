@@ -13,6 +13,8 @@ import lombok.*;
 @Setter
 public class MovieDTO {
 
+    private Long id;
+    
     private String title; 
     private String overview;
 

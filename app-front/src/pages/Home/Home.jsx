@@ -28,8 +28,9 @@ const Home = () => {
   return (
     <div className="home">
       <h1>Filmes</h1>
-      {movies.length === 0 ? <p>Carregando</p> : (movies.map((movie) => (
-          <MovieCard key={movie.id}
+      {movies.length === 0 ? <p>Carregando</p> : (movies.map((movie, index) => (
+          <MovieCard key={movie.id || index} 
+            id={movie.id}
             poster_path={movie.poster_path}
             title={movie.title}
             vote_average={movie.vote_average}

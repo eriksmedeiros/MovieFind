@@ -1,6 +1,7 @@
 package com.erik.movie_find.services;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -77,9 +78,25 @@ public class MovieService {
         return response.getBody();
     }
 
-    public MovieDTO getMovieByTitle(String title) {
-        Movie movie = movieRepository.findByTitle(title);
+    public String getMovieById(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
 
-        return movie.toDTO();
+        String url = API_URL + id + "?api_key=" + API_TOKEN + "&language=pt-BR";
+        String bearerToken = "Bearer " + API_TOKEN;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("accept", "application/json");
+        headers.set("Authorization", bearerToken);
+
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+            url,
+            HttpMethod.GET,
+            entity,
+            String.class
+        );
+
+        return response.getBody();
     }
 }

@@ -1,6 +1,7 @@
 package com.erik.movie_find.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,8 +41,8 @@ public class MovieController {
         return ResponseEntity.ok(movieService.searchMovieByTitle(newTitle));
     }
 
-    @GetMapping("/{title}")
-    public ResponseEntity<?> getMovieByTitle(@PathVariable String title){
-        return ResponseEntity.ok(movieService.getMovieByTitle(title));
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getMovieById(@PathVariable Long id){
+        return ResponseEntity.ok(movieService.getMovieById(id));
     }
 }

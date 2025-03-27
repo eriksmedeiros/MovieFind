@@ -2,6 +2,10 @@ import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 
+import { FaStar } from "react-icons/fa";
+import { BsFillFileEarmarkTextFill } from "react-icons/bs";
+import { CiCalendarDate } from "react-icons/ci";
+
 import './Movie.css';
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -37,13 +41,35 @@ const Movie = () => {
 
   return (
     <div className="movie-page">
-      <h1>Filmes</h1>
       {!movie ? (
-        <p>Carregando...</p> // 🔥 Exibe uma mensagem enquanto os dados não chegam
+        <p>Carregando...</p>
       ) : (
         <>
-          <h1>{movie.title}</h1>
-          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+          <div className="header">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+            />
+            <h1>{movie.title}</h1>
+            <p>
+              <FaStar />
+              {movie.vote_average.toFixed(1)}
+            </p>
+          </div>
+  
+          <div className="info">
+            <h3>
+              <BsFillFileEarmarkTextFill /> Descrição:
+            </h3>
+            <p>{movie.overview}</p>
+          </div>
+  
+          <div className="info">
+            <h3>
+              <CiCalendarDate /> Data de Lançamento:
+            </h3>
+            <p>{new Date(movie.release_date).toLocaleDateString("pt-BR")}</p>
+          </div>
         </>
       )}
     </div>

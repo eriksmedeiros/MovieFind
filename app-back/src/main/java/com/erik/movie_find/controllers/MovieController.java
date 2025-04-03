@@ -29,11 +29,6 @@ public class MovieController {
     public List<MovieDTO> getMovies(){
         return movieService.getAllMovies();
     }
-
-    @PostMapping("/upload")
-    public ResponseEntity<?> uploadMovie(@RequestBody MovieDTO movieDTO){
-        return ResponseEntity.ok(movieService.uploadMovie(movieDTO));
-    }
         
     @GetMapping("/search")
     public ResponseEntity<?> searchMovie(@RequestParam String title){

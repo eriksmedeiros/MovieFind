@@ -11,12 +11,15 @@ import org.springframework.web.client.RestTemplate;
 import com.erik.movie_find.dtos.MovieDTO;
 import com.erik.movie_find.models.Movie;
 import com.erik.movie_find.repositorys.MovieRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class MovieService {
     
     @Autowired
-    private MovieRepository movieRepository;
+    private final MovieRepository movieRepository;
 
     @Value("${tmdb.api.url}")
     private String API_URL;
@@ -26,6 +29,10 @@ public class MovieService {
 
     @Value("${tmdb.api.key}")
     private String API_KEY;
+
+    public MovieService(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+    }
 
     public List<MovieDTO> getAllMovies() {
         String url = "https://api.themoviedb.org/3/movie/popular?api_key=" + API_KEY + "&language=pt-BR";
@@ -47,12 +54,6 @@ public class MovieService {
         );
 
         return response.getBody().getResults();
-    }
-
-    public MovieDTO uploadMovie(MovieDTO movieDTO) {
-        Movie movie = movieDTO.toEntity();
-        
-        return movieRepository.save(movie).toDTO();
     }
 
     public String searchMovieByTitle(String title) {
@@ -77,7 +78,7 @@ public class MovieService {
         return response.getBody();
     }
 
-    public String getMovieById(Long id) {
+    public Movie getMovieById(Long id) {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = API_URL + id + "?api_key=" + API_TOKEN + "&language=pt-BR";
@@ -96,6 +97,14 @@ public class MovieService {
             String.class
         );
 
-        return response.getBody();
+        String responseBody = response.getBody();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        
+        try{
+            return objectMapper.readValue(responseBody, Movie.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao desserializar JSON para Movie", e);
+        }
     }
 }

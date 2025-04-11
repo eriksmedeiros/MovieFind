@@ -1,6 +1,7 @@
 package com.erik.movie_find.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import com.erik.movie_find.services.CommentService;
 
 @RestController
 @RequestMapping("api/movies/{movieId}/comments")
+@CrossOrigin(origins = "http://127.0.0.1:5173")
 public class CommentController {
     private final CommentService commentService;
 

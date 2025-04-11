@@ -2,12 +2,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #121212;
-    padding: 16px 32px;
+    background-color: #1c1c1c;
+    padding: 16px 100px;
 }
 
 .navbar h2 link {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.navbar form {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.navbar form input {
+    font-size: 12px;
+    flex: 1;
+    padding: 5px;
+}
+
+.navbar form button {
+    padding: 2.5px 5px;
+    cursor: pointer;
+    background-color: #f7d354;
 }

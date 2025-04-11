@@ -6,6 +6,8 @@ import { FaStar } from "react-icons/fa";
 import { BsFillFileEarmarkTextFill } from "react-icons/bs";
 import { CiCalendarDate } from "react-icons/ci";
 
+import Comments from '../../components/Comments/Comments';
+
 import './Movie.css';
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -69,6 +71,10 @@ const Movie = () => {
               <CiCalendarDate /> Data de Lançamento:
             </h3>
             <p>{new Date(movie.release_date).toLocaleDateString("pt-BR")}</p>
+          </div>
+
+          <div className="comments">
+            <Comments movieId={movie.id}/>
           </div>
         </>
       )}

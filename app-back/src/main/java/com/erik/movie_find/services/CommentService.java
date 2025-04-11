@@ -1,14 +1,11 @@
 package com.erik.movie_find.services;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.erik.movie_find.dtos.CommentDTO;
 import com.erik.movie_find.models.Comment;
-import com.erik.movie_find.models.Movie;
 import com.erik.movie_find.repositorys.CommentRepository;
 import com.erik.movie_find.repositorys.MovieRepository;
 

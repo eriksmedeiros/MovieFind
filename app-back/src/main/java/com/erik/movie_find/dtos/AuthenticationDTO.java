@@ -6,8 +6,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentDTO {
-    private Long movieId;
-    private String text;
-    private String author;
+public class AuthenticationDTO {
+    private String email;
+    private String password;
 }

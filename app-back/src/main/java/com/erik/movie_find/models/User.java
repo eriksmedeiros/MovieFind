@@ -21,8 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Getter
 @Setter
 @Table(name = "users")
-// USERDETAILS IMPLEMENTA METODOS PARA AUTENTICACAO DE USUARIOS
-public class User implements UserDetails {
+public class User implements UserDetails { // Implementa UserDetails para integração com Spring Security
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,16 +32,30 @@ public class User implements UserDetails {
     private String urlImage;
     private UserRole role;
 
+    public User(String email, String password, String urlImage, UserRole role) {
+        this.email = email;
+        this.password = password;
+        this.urlImage = urlImage;
+        this.role = role;
+    }
+
     // metodo para retornar as roles (permissoes) do usuario
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // ROLE ADMIN TEM PERMISSOES DE USUARIO E ADMIN
         if (this.role == UserRole.ADMIN) {
+            // Retorna permissões de ADMIN e USER
             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         // ROLE USER TEM PERSMISSÕES APENAS DE USUARIO
         } else{
+            // Retorna somente permissão de USER
             return List.of(new SimpleGrantedAuthority("ROLE_USER"));
         }
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override

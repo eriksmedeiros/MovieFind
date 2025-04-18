@@ -1,5 +1,6 @@
 package com.erik.movie_find.dtos;
 
+// ENUM para as Roles de permissões dos usuários
 public enum UserRole {
     ADMIN("admin"),
     USER("user");

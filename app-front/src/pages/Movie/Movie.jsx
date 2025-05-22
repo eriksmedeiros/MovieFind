@@ -19,7 +19,6 @@ const Movie = () => {
 
   const getMovies = async (url) => {
       const response = await axios.get(url);
-      console.log("Dados recebidos:", response.data);
       setMovie(response.data);
   }
 

@@ -12,10 +12,7 @@ import jakarta.validation.Valid;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController // Define a classe como um controller REST
 @RequestMapping("/auth") // Mapeia as requisições para "/auth"
@@ -36,9 +33,10 @@ public class AuthController {
         // Cria um token com email e senha vindos do DTO
         var usernamePassword = new UsernamePasswordAuthenticationToken(authDTO.getEmail(), authDTO.getPassword());
 
-        // Autentica o usuário com base no token
+        // Realiza a autenticação usando o authenticationManager
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
+        // Gera um token JWT com os dados do usuário autenticado
         var token = tokenService.generateToken((User) auth.getPrincipal());
 
         // Retorna 200 OK se autenticado com sucesso
